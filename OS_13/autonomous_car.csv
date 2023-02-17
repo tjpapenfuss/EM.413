@@ -1,0 +1,4 @@
+SAE Autonomy Level,Autonomy Option,Weight [kg],Added Power Consumption [Wh/km],Cost [$1000]
+3,A3,30,1.5,15
+4,A4,60,2.5,35
+5,A5,120,5,60

@@ -1,0 +1,5 @@
+Motor + Inverter,Weight [kg],Power [kW],Cost [$]
+M1,82,150,1200
+M2,60,150,1400
+M3,140,210,1650
+M4,100,450,3600

@@ -1,0 +1,4 @@
+Charger,Power [kW],Cost on vehicle [$1000],Weight on vehicle [kg]
+G1,10,1,1
+G2,20,2.5,1.8
+G3,60,10,5

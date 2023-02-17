@@ -1,0 +1,9 @@
+Chassis,Pax,Weight chassis [kg],Chassis Cost [$1000],Nominal Power consumption [Wh/km]
+C1,2,1350,12,140
+C2,4,1600,17,135
+C3,6,1800,21,145
+C4,8,2000,29,150
+C5,10,2200,31,160
+C6,16,2500,33,165
+C7,20,4000,38,180
+C8,30,7000,47,210

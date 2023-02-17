@@ -1,0 +1,4 @@
+Frame#,Pax,Weight [kg],Frame Cost [$1000],Nominal Power consumption [Wh/km]
+B1,1,50,2,30
+B2,1,50,3,25
+B3,2,80,3.5,40
