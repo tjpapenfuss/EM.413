@@ -1,7 +1,8 @@
 import pandas as pd
 
-imported_df = pd.read_csv("architectures.csv")
-df = imported_df.copy()
+#imported_df = pd.read_csv("architectures.csv")
+df = pd.read_csv("architectures.csv")
+#df = imported_df.copy()
 option_df = pd.read_csv("options.csv", index_col=0)
 #print(df.iloc[1])
 #print("A3"=="A5")
@@ -9,114 +10,83 @@ option_df = pd.read_csv("options.csv", index_col=0)
 #integers = int(df["A"][1][1:2])
 
 for item in range(len(df)):
-    # The following code gets the numerical values for the 5 components of the system.
-    a = int(df["A"][item][1:2])
-    b = int(df["B"][item][1:2])
-    c = int(df["C"][item][1:2])
-    d = int(df["D"][item][1:2])
-    e = int(df["E"][item][1:2])
-    f = int(df["F"][item][1:2])
-    g = int(df["G"][item][1:2])
-    h = int(df["H"][item][1:2])
-    j = int(df["J"][item][1:2])
-    k = int(df["K"][item][1:2])
-    print(a,b,c,d,e,f,g,h,j,k)
+    # The following code gets the ID (Ie. A2.) for the 10 decisions of the system.
+    # A1/2 are the options for the first architectural decision D1. 
+    #print(a,b,c,d,e,f,g,h,j,k)
     a_val = df["A"][item]
-    print(a_val)
-    # The following variables are calcualted according to the following formulas:
-    # Total Vehicle Cost [dollars] = Chassis Cost + Battery Cost + Charger Cost + Motor and inverter Cost + Autonomy system cost
-    # Total Fleet Cost [dollars] = Vehicle Cost*Number of vehicles
-    # Total Vehicle Weight [kg] = Chassis Weight + Battery Weight + Charger Weight + Motor and inverter Weight + Passengers Weight + Autonomy system Weight
-    # Battery charge time [h] = Battery Capacity [kWh] / Charger Power [kW]
-    # Power Consumption [Wh/km] = Nominal Power Consumption Chassis [Wh/km] + 0.1*(Total Weight [kg] - Chassis Weight [kg] ) + Added Power Consumption Autonomous System [Wh/km]
-    # Range [km] = Battery Capacity [Wh] / Power Consumption [Wh/km]
-    # Average Speed [km/h] = 700 * Motor Power [kW] / Total Weight [kg] 
+    b_val = df["B"][item]
+    c_val = df["C"][item]
+    d_val = df["D"][item]
+    e_val = df["E"][item]
+    f_val = df["F"][item]
+    g_val = df["G"][item]
+    h_val = df["H"][item]
+    j_val = df["J"][item]
+    k_val = df["K"][item]
 
-    #initialize the variables. 
-    df.loc[:, ("Frequency", item)] = 0
-    df.loc[:, ("Accuracy",item)] = 0
-    df.loc[:, ("Innovation",item)] = 0
-    df.loc[:, ("Setup time",item)] = 0
-    df.loc[:, ("Safety",item)] = 0
-    df.loc[:, ("Judgement",item)] = 0
-    df.loc[:, ("Cost",item)] = 0
-
+    ##############################################################################################################################
+    # The following block of code is setting the utility values.
+    # These utilities are calculated according to the following formulas:
+    # U_f=  (2D1+D3+D5 )/4
+    # U_A=  (D1+D2+D6+D8 )/4
+    # U_I=  (D1+D2+D4+2D7+D9)/6
+    # U_T=  (D1+D2+D4+3D6+2D7+2D10)/10
+    # U_S=  (D1+D3+5D10 )/7
+    # U_H=  (D1+D10 )/2
+    # Where D is the decision identifier. Ie. D1 is Measurement collection architecture decision. 
+    ##############################################################################################################################
     # A block of code
-    #  Add to the total cost of vehicle P cost.
-    df.loc[:, ("Frequency",item)] = \
-        df.loc[:, ("Frequency",item)] + \
-        option_df.loc[a_val]["Frequency"]
-    print(df)
-    print(option_df.loc[a_val]["Frequency"])
-    # # Add to the total vehicle weight of P weights. 
-    # df.loc[:, ("Total Vehicle Weight [kg] minus passengers",item)] = \
-    #     df.loc[:, ("Total Vehicle Weight [kg] minus passengers",item)] + \
-    #     df_battery_pack["Weight [kg]",p-1]
-    # #Setting the initial Battery charge. 
-    # df.loc[:, ("Battery charge time [h]",item)] = df.loc[:, ("Battery charge time [h]",item)] * df_battery_pack["Capacity [kWh]",p-1]
-    # #Setting the initial Battery range. 
-    # df.loc[:, ("Range [km]",item)] = df.loc[:, ("Range [km]",item)] * df_battery_pack["Capacity [kWh]",p-1]
+    # Set the Utility value for the Frequency.
+    #df["Frequency"][item] = ((2*option_df.loc[a_val]["Frequency"]) + \
+    #                        option_df.loc[c_val]["Frequency"] + \
+    #                        option_df.loc[d_val]["Frequency"]) / 4
+    df.at[item, "Frequency"] = round(((2*option_df.loc[a_val]["Frequency"]) + \
+                            option_df.loc[c_val]["Frequency"] + \
+                            option_df.loc[e_val]["Frequency"]) / 4, 2)
 
-    # # C block of code
-    # # Add to the total cost of vehicle C cost.
-    # df.loc[:, ("Total Vehicle Cost [$1000]",item)] = \
-    #     df.loc[:, ("Total Vehicle Cost [$1000]",item)] + \
-    #     df_chassis["Chassis Cost [$1000]",c-1]
-    # # Add to the total vehicle weight of C weights. 
-    # df.loc[:, ("Total Vehicle Weight [kg] minus passengers",item)] = \
-    #     df.loc[:, ("Total Vehicle Weight [kg] minus passengers",item)] + \
-    #     df_chassis["Weight chassis [kg]",c-1]
-    # df.loc[:, ("Power Consumption [Wh/km]",item)] = \
-    #     df.loc[:, ("Power Consumption [Wh/km]",item)] + \
-    #     df_chassis["Nominal Power consumption [Wh/km]",c-1] - \
-    #     (0.1 * df_chassis["Weight chassis [kg]",c-1])
+    # Set the Utility value for the Accuracy.
+    df.at[item,"Accuracy"] = round((option_df.loc[a_val]["Accuracy"] + \
+                            option_df.loc[b_val]["Accuracy"] + \
+                            option_df.loc[f_val]["Accuracy"] + \
+                            option_df.loc[h_val]["Accuracy"]) / 4, 2)
+    #print(option_df.loc[a_val]["Accuracy"], option_df.loc[b_val]["Accuracy"], option_df.loc[f_val]["Accuracy"], option_df.loc[h_val]["Accuracy"])
 
-    # # G block
-    # # Add to the total cost of vehicle G cost.
-    # df.loc[:, ("Total Vehicle Cost [$1000]",item)] = \
-    #     df.loc[:, ("Total Vehicle Cost [$1000]",item)] + \
-    #     df_battery_charger["Cost on vehicle [$1000]",g-1]
-    # # Add to the total vehicle weight of G weights. 
-    # df.loc[:, ("Total Vehicle Weight [kg] minus passengers",item)] = \
-    #     df.loc[:, ("Total Vehicle Weight [kg] minus passengers",item)] + \
-    #     df_battery_charger["Weight on vehicle [kg]",g-1]
-    # # Dividing the calculated charge time by the charge power. 
-    # df.loc[:, ("Battery charge time [h]",item)] = round(df.loc[:, ("Battery charge time [h]",item)] * \
-    #     (1/df_battery_charger["Power [kW]",g-1]), 2)    
+    # Set the Utility value for the Innovation.
+    df.at[item,"Innovation"] = round((option_df.loc[a_val]["Innovation"] + \
+                            option_df.loc[b_val]["Innovation"] + \
+                            option_df.loc[d_val]["Innovation"] + \
+                            option_df.loc[j_val]["Innovation"] + \
+                            (2*option_df.loc[g_val]["Innovation"])) / 6, 2)
+    
+    # Set the Utility value for the Setup time.
+    df.at[item,"Setup time"] = round((option_df.loc[a_val]["Setup time"] + \
+                            option_df.loc[b_val]["Setup time"] + \
+                            option_df.loc[d_val]["Setup time"] + \
+                            (3*option_df.loc[f_val]["Setup time"]) + \
+                            (2*option_df.loc[g_val]["Setup time"]) + \
+                            (2*option_df.loc[k_val]["Setup time"])) / 10, 2)
 
-    # # M block
-    # # Add to the total cost of vehicle M cost.
-    # df.loc[:, ("Total Vehicle Cost [$1000]",item)] = \
-    #     df.loc[:, ("Total Vehicle Cost [$1000]",item)] + \
-    #     (df_motor["Cost [$]",m-1]/1000)    
-    # # Add to the total vehicle weight of M weights. 
-    # df.loc[:, ("Total Vehicle Weight [kg] minus passengers",item)] = \
-    #     df.loc[:, ("Total Vehicle Weight [kg] minus passengers",item)] + \
-    #     df_motor["Weight [kg]",m-1]    
-    # df.loc[:, ("Average Speed [km/h]",item)] = df.loc[:, ("Average Speed [km/h]",item)] * \
-    #     df_motor["Power [kW]",m-1]    
+    # Set the Utility value for the Safety.
+    df.at[item,"Safety"] = round((option_df.loc[a_val]["Safety"] + \
+                            option_df.loc[c_val]["Safety"] + \
+                            (5*option_df.loc[k_val]["Safety"])) / 7, 2)
 
-    # # A block
-    # # Add to the total cost of vehicle A cost.
-    # df.loc[:, ("Total Vehicle Cost [$1000]",item)] = \
-    #     df.loc[:, ("Total Vehicle Cost [$1000]",item)] + \
-    #     df_autonomy["Cost [$1000]",a-3]
-    # # Add to the total vehicle weight of A weights. 
-    # df.loc[:, ("Total Vehicle Weight [kg] minus passengers",item)] = \
-    #     df.loc[:, ("Total Vehicle Weight [kg] minus passengers",item)] + \
-    #     df_autonomy["Weight [kg]",a-3]
-    # # Update power consumption with A consumption.
-    # df.loc[:, ("Power Consumption [Wh/km]",item)] = \
-    #     df.loc[:, ("Power Consumption [Wh/km]",item)] + \
-    #     df_autonomy["Added Power Consumption [Wh/km]",a-3]
+    # Set the Utility value for the Judgement.
+    df.at[item,"Judgement"] = round((option_df.loc[a_val]["Judgement"] + \
+                            option_df.loc[k_val]["Judgement"]) / 2, 2)
 
-    # df.loc[:, ("Power Consumption [Wh/km]",item)] = \
-    #     round(df.loc[:, ("Power Consumption [Wh/km]",item)] + \
-    #     (0.1 * df.loc[:, ("Total Vehicle Weight [kg] minus passengers",item)]), 2)
-    # #Setting the initial Battery range. 
-    # df.loc[:, ("Range [km]",item)] = round(df.loc[:, ("Range [km]",item)] / df.loc[:, ("Power Consumption [Wh/km]",item)], 2)
 
-    # df.loc[:, ("Average Speed [km/h]",item)] = round(df.loc[:, ("Average Speed [km/h]",item)] * \
-    #     (1/df.loc[:, ("Total Vehicle Weight [kg] minus passengers",item)]), 2)
+    # Set value for the Cost. 
+    df.at[item,"Cost"] = round((option_df.loc[a_val]["Cost"] + \
+                            option_df.loc[b_val]["Cost"] + \
+                            option_df.loc[c_val]["Cost"] + \
+                            option_df.loc[d_val]["Cost"] + \
+                            option_df.loc[e_val]["Cost"] + \
+                            option_df.loc[f_val]["Cost"] + \
+                            option_df.loc[g_val]["Cost"] + \
+                            option_df.loc[h_val]["Cost"] + \
+                            option_df.loc[j_val]["Cost"] + \
+                            option_df.loc[k_val]["Cost"]) / 10, 2)
+    
 
 df.to_csv("outputTesting.csv")
