@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 imported_df = pd.read_csv("pythonTrade.csv")
 
-imported_df.plot(x="Utility", y="Cost", kind="scatter")
+imported_df.plot(x="Cost", y="Utility", kind="scatter")
 
 def pareto_frontier(Xs, Ys, maxX = True, maxY = True):
     # Sort the list in either ascending or descending order of X
@@ -26,7 +26,7 @@ def pareto_frontier(Xs, Ys, maxX = True, maxY = True):
     p_frontY = [pair[1] for pair in p_front]
     return p_frontX, p_frontY
 
-X_values, Y_values = pareto_frontier(imported_df["Utility"], imported_df["Cost"], maxX = True, maxY = False)
+X_values, Y_values = pareto_frontier(imported_df["Cost"], imported_df["Utility"], maxX = False, maxY = True)
 #pareto_pts = keep_efficient(np.array(imported_df[["Utility", "Cost"]]))
 #bool_pareto = (is_pareto_efficient_simple(imported_df[["Utility", "Cost"]].to_numpy()))
 #print(pareto_pts)
@@ -37,13 +37,13 @@ print(X_values, Y_values)
 #fig = ax.get_figure()
 #fig.savefig('figure.png')
 ax = plt.gca()
-ax.set_xlim([0, 1])
+ax.set_ylim([0, 1])
 plt.scatter(X_values, Y_values, c="red")
 plt.plot(X_values, Y_values, 'red', linestyle="--")
 plt.title("Cost vs Utility for 10 architectures")
-plt.ylabel("Cost ($ Millions)")
-plt.text(0.9, 350000, "Utopia", color="gold")
-plt.plot(0.95, 100000, marker='*', markersize=30, color="gold")
+plt.xlabel("Cost ($ Millions)")
+plt.text(300000, 0.9, "Utopia", color="gold")
+plt.plot(100000, 0.90, marker='*', markersize=30, color="gold")
 # Then plot the Pareto frontier on top
 # plt.plot(p_front[0], p_front[1])
 plt.savefig('figure.png')
