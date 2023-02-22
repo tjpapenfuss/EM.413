@@ -40,10 +40,26 @@ ax = plt.gca()
 ax.set_ylim([0, 1])
 plt.scatter(X_values, Y_values, c="red")
 plt.plot(X_values, Y_values, 'red', linestyle="--")
-plt.title("Cost vs Utility for 10 architectures")
+plt.title("Cost vs Utility - OS-13")
 plt.xlabel("Cost ($ Millions)")
 plt.text(300000, 0.9, "Utopia", color="gold")
 plt.plot(100000, 0.90, marker='*', markersize=30, color="gold")
+
+# Plot some reference architectures
+#First Architecture, Semi-Automated Records
+plt.plot(imported_df["Cost"][0], imported_df["Utility"][0], marker='s', markersize=8, color="purple")
+plt.plot(2900000, 0.915, marker='s', markersize=8, color="purple")
+plt.text(1300000, 0.90, "Ref #1: Semi-Automated Records", color="purple")
+
+#Second Architecture, IoT Dashboard Monitoring
+plt.plot(imported_df["Cost"][1], imported_df["Utility"][1], marker='s', markersize=8, color="green")
+plt.plot(2900000, 0.865, marker='s', markersize=8, color="green")
+plt.text(1300000, 0.85, "Ref #2: IoT Dashboard Monitoring", color="green")
+
+#Third Architecture, VR Equipment Inspection
+plt.plot(imported_df["Cost"][2], imported_df["Utility"][2], marker='s', markersize=8, color="darkblue")
+plt.plot(2900000, 0.815, marker='s', markersize=8, color="darkblue")
+plt.text(1300000, 0.80, "Ref #3: VR Equipment Inspection", color="darkblue")
 # Then plot the Pareto frontier on top
 # plt.plot(p_front[0], p_front[1])
 plt.savefig('figure.png')

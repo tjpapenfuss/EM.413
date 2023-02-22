@@ -1,7 +1,7 @@
 ﻿OptionNum,Option,Frequency,Data Accuracy,Technical Maturity,Setup time,Safety,Human Judgement,Cost_norm,Cost,Utility
 A1,Connected IOT sensor,1.0,0.3,1.0,0.0,0.7,1.0,0.4,50000
 A2,Manual gauge read/entry,0.3,1.0,0.2,1.0,0.3,0.0,0.0,5000
-B1,Live video feed,0.0,0.7,0.8,0.5,0.0,0.0,0.4,50000
+B1,Live video feed,0.0,1,0.8,0.5,0.0,0.0,0.4,50000
 B2,Periodic LIDAR scan,0.0,1.0,1.0,0.0,0.0,0.0,0.8,500000
 B3,Periodic photography,0.0,0.3,0.2,0.8,0.0,0.0,0.2,10000
 B4,None,0.0,0.0,0.0,1.0,0.0,0.0,0.0,5000
@@ -16,7 +16,7 @@ E1,Hot Storage,1.0,0.0,0.0,0.0,0.0,0.0,0.4,50000
 E2,Cold Storage,0.3,0.0,0.0,0.0,0.0,0.0,0.0,5000
 E3,Mix,0.7,0.0,0.0,0.0,0.0,0.0,0.2,10000
 F1,Stand-alone analysis,0.0,0.7,0.0,0.5,0.0,0.0,0.4,50000
-F2,Fleet style analysis,0.0,0.3,0.0,0.0,0.0,0.0,0.8,500000
+F2,Fleet style analysis,0.0,1,0.0,0.0,0.0,0.0,0.8,500000
 G1,Machine Learning Model,0.0,0.0,1.0,0.0,0.0,0.0,0.6,150000
 G2,Basic Statistical Models,0.0,0.0,0.2,0.5,0.0,0.0,0.4,50000
 G3,Physics Derived Model,0.0,0.0,0.6,0.2,0.0,0.0,0.4,50000
