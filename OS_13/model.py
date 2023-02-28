@@ -3,15 +3,26 @@ import pandas as pd
 #Import the csv files into pandas dataframes.
 df = pd.read_csv("architectures.csv")
 option_df = pd.read_csv("options.csv", index_col=0)
-df_TradeSpace = df[['Cost', 'Utility']].copy()
+#df_TradeSpace = df[['Cost', 'Utility']].copy()
 
 # Set the global Variables. These metrics need to be updated in both architectures.csv and options.csv!
 metric1 = "Frequency"
+metric1_weight = 0.15
+
 metric2 = "Data Accuracy"
+metric2_weight = 0.20
+
 metric3 = "Technical Maturity"
+metric3_weight = 0.15
+
 metric4 = "Setup time"
+metric4_weight = 0.20
+
 metric5 = "Safety"
+metric5_weight = 0.15
+
 metric6 = "Human Judgement"
+metric6_weight = 0.15
 
 for item in range(len(df)):
     # The following code gets the ID (Ie. A2.) for the 10 decisions of the system.
@@ -81,12 +92,12 @@ for item in range(len(df)):
     # Generate value for the total Utility.
     # This is calculated using the following equation:
     # 0.15*U_f + 0.2*U_A + 0.15*U_M + 0.2*U_T + 0.15*U_S + 0.15*U_H
-    df.at[item,"Utility"] = round((0.15*df.loc[item,metric1]) + \
-                            (0.2*df.loc[item,metric2]) + \
-                            (0.15*df.loc[item,metric3]) + \
-                            (0.2*df.loc[item,metric4]) + \
-                            (0.15*df.loc[item,metric5]) + \
-                            (0.15*df.loc[item,metric6]), 2)
+    df.at[item,"Utility"] = round((metric1_weight*df.loc[item,metric1]) + \
+                            (metric2_weight*df.loc[item,metric2]) + \
+                            (metric3_weight*df.loc[item,metric3]) + \
+                            (metric4_weight*df.loc[item,metric4]) + \
+                            (metric5_weight*df.loc[item,metric5]) + \
+                            (metric6_weight*df.loc[item,metric6]), 2)
     
     # Set value for the Cost. 
     df.at[item,"Cost_norm"] = round((option_df.loc[a_val]["Cost_norm"] + \
@@ -112,9 +123,9 @@ for item in range(len(df)):
                             option_df.loc[k_val]["Cost"]), 0)
 
 
-    df_TradeSpace.at[item,"Cost"] = df.loc[item,"Cost"]
-    df_TradeSpace.at[item,"Utility"] = df.loc[item,"Utility"]
+    #df_TradeSpace.at[item,"Cost"] = df.loc[item,"Cost"]
+    #df_TradeSpace.at[item,"Utility"] = df.loc[item,"Utility"]
 
 df.to_csv("outputTesting.csv")
 
-df_TradeSpace.to_csv("pythonTrade.csv")
+#df_TradeSpace.to_csv("pythonTrade.csv")
