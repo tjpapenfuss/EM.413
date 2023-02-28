@@ -4,13 +4,17 @@ import matplotlib.pyplot as plt
 
 imported_df = pd.read_csv("outputTesting.csv")
 
-imported_df.plot(x="Cost", y="Utility", kind="scatter")
 
-# for index, row in imported_df.iterrows():
-#     if(row['K'] == 'K3'):
-#         plt.scatter(row['Cost'], row['Utility'], color="orange")
-#     else:
-#         plt.scatter(row['Cost'], row['Utility'], color="lightblue")
+# Use the below line of code to just plot all points in a scatter plot
+# imported_df.plot(x="Cost", y="Utility", kind="scatter")
+
+# Use this for loop to plot only if some condition is met. 
+# Currently the condition is if K3 is set. 
+for index, row in imported_df.iterrows():
+    if(row['K'] == 'K3'):
+        plt.scatter(row['Cost'], row['Utility'], color="orange")
+    else:
+        plt.scatter(row['Cost'], row['Utility'], color="lightblue")
 
 def pareto_frontier(Xs, Ys, maxX = True, maxY = True):
     # Sort the list in either ascending or descending order of X
