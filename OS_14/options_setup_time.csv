@@ -1,0 +1,34 @@
+﻿OptionNum,Option,setup_time,Cost
+A1,Connected IOT sensor,90,50000
+A2,Manual gauge read/entry,0,5000
+B1,Live video feed,21,50000
+B2,Periodic LIDAR scan,90,500000
+B3,Periodic photography,3,10000
+B4,None,0,5000
+C1,Wired (Fiber),90,10000
+C2,Cellular (4G LTE),90,5000
+C3,Wi-Fi,90,10000
+D1,MySQL,21,50000
+D2,SQL (Cloud),45,150000
+D3,Excel,0,5000
+D4,Unstructured,90,150000
+E1,Hot Storage,90,50000
+E2,Cold Storage,90,5000
+E3,Mix,90,10000
+F1,Stand-alone analysis,21,50000
+F2,Fleet style analysis,90,500000
+G1,Machine Learning Model,90,150000
+G2,Basic Statistical Models,21,50000
+G3,Physics Derived Model,45,50000
+G4,None,0,5000
+H1,PowerBI,90,10000
+H2,Python,90,50000
+H3,JavaScript,90,50000
+H4,None,90,5000
+J1,Live-Stream,90,50000
+J2,3D Rendered Equipment,90,500000
+J3,None,90,5000
+K1,Dashboard Alarm,32,10000
+K2,"One-time alert (phone, email)",14,10000
+K3,Automated shut-down,0,1500000
+K4,None,90,5000
