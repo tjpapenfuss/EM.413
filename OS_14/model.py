@@ -2,7 +2,7 @@ import pandas as pd
 
 #Import the csv files into pandas dataframes.
 df = pd.read_csv("architectures.csv")
-option_setup = pd.read_csv("options_setup_time.csv", index_col=0)
+option_setup = pd.read_csv("options_safety.csv", index_col=0)
 option_accuracy = pd.read_csv("options_accuracy.csv", index_col=0)
 #df_TradeSpace = df[['Cost', 'Utility']].copy()
 
@@ -20,7 +20,7 @@ for item in range(len(df)):
     h_val = df["H"][item]
     j_val = df["J"][item]
     k_val = df["K"][item]
-    metric_setup = "setup_time"
+    metric_safety = "Safety"
     metric_accuracy = "Accuracy"
 
     ##############################################################################################################################
@@ -38,16 +38,17 @@ for item in range(len(df)):
                             option_accuracy.loc[d_val][metric_accuracy] * \
                             option_accuracy.loc[h_val][metric_accuracy], 2)
     
-    # Set the Utility value for the Setup time.
-    df.at[item,metric_setup] = (option_setup.loc[a_val][metric_setup] + \
-                            option_setup.loc[b_val][metric_setup] + \
-                            option_setup.loc[c_val][metric_setup] + \
-                            option_setup.loc[d_val][metric_setup] + \
-                            option_setup.loc[f_val][metric_setup] + \
-                            option_setup.loc[g_val][metric_setup] + \
-                            option_setup.loc[h_val][metric_setup] + \
-                            option_setup.loc[j_val][metric_setup] + \
-                            option_setup.loc[k_val][metric_setup])
+    # Set the Utility value for the Safety.
+    df.at[item,metric_safety] = round((option_setup.loc[a_val][metric_safety] + \
+                            option_setup.loc[b_val][metric_safety] + \
+                            option_setup.loc[c_val][metric_safety] + \
+                            option_setup.loc[d_val][metric_safety] + \
+                            option_setup.loc[e_val][metric_safety] + \
+                            option_setup.loc[f_val][metric_safety] + \
+                            option_setup.loc[g_val][metric_safety] + \
+                            option_setup.loc[h_val][metric_safety] + \
+                            option_setup.loc[j_val][metric_safety] + \
+                            option_setup.loc[k_val][metric_safety]) / 10, 2)
     
     # Set value for the Cost. 
     df.at[item,"Cost"] = (option_setup.loc[a_val]["Cost"] + \

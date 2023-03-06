@@ -6,15 +6,15 @@ imported_df = pd.read_csv("outputTesting.csv")
 
 
 # Use the below line of code to just plot all points in a scatter plot
-# imported_df.plot(x="Cost", y="setup_time", kind="scatter")
+# imported_df.plot(x="Cost", y="Safety", kind="scatter")
 
 # Use this for loop to plot only if some condition is met. 
 # Currently the condition is if K3 is set. 
 for index, row in imported_df.iterrows():
     if(row['K'] == 'K3'):
-        plt.scatter(row['Cost'], row['setup_time'], color="orange")
+        plt.scatter(row['Cost'], row['Safety'], color="orange")
     else:
-        plt.scatter(row['Cost'], row['setup_time'], color="lightblue")
+        plt.scatter(row['Cost'], row['Safety'], color="lightblue")
 
 def pareto_frontier(Xs, Ys, maxX = True, maxY = True):
     # Sort the list in either ascending or descending order of X
@@ -36,37 +36,37 @@ def pareto_frontier(Xs, Ys, maxX = True, maxY = True):
     p_frontY = [pair[1] for pair in p_front]
     return p_frontX, p_frontY
 
-# Call the pareto_frontier function with your Cost and setup_time values from pythonTrade.csv.
-X_values, Y_values = pareto_frontier(imported_df["Cost"], imported_df["setup_time"], maxX = False, maxY = True)
+# Call the pareto_frontier function with your Cost and Safety values from pythonTrade.csv.
+X_values, Y_values = pareto_frontier(imported_df["Cost"], imported_df["Safety"], maxX = False, maxY = True)
 #print(X_values, Y_values) # Print out to pareto frontier values.
 
 ax = plt.gca()
-#ax.set_ylim([0, 1]) # Set the y-axis (setup_time) limit to 0-1
+ax.set_ylim([0.4, 1]) # Set the y-axis (Safety) limit to 0-1
 plt.scatter(X_values, Y_values, c="red")
 plt.plot(X_values, Y_values, 'red', linestyle="--") # Then plot the Pareto frontier on top of your scatter plot.
-plt.title("Cost vs setup_time - MAU Model #2")
+plt.title("Cost vs Safety - MAU Model #2")
 plt.xlabel("Cost ($ Millions)")
 plt.text(300000, 0.9, "Utopia", color="gold")
 plt.plot(100000, 0.90, marker='*', markersize=30, color="gold")
 
-# Plot some reference architectures
+#Plot some reference architectures
 #First Architecture, Semi-Automated Records
-plt.plot(imported_df["Cost"][0], imported_df["setup_time"][0], marker='s', markersize=8, color="purple")
-plt.plot(2900000, 0.915, marker='s', markersize=8, color="purple")
-plt.text(1300000, 0.90, "Ref #1: Semi-Automated Records", color="purple")
+plt.plot(imported_df["Cost"][0], imported_df["Safety"][0], marker='s', markersize=8, color="purple")
+plt.plot(2900000, 0.615, marker='s', markersize=8, color="purple")
+plt.text(1300000, 0.60, "Ref #1: Semi-Automated Records", color="purple")
 
 #Second Architecture, IoT Dashboard Monitoring
-plt.plot(imported_df["Cost"][1], imported_df["setup_time"][1], marker='s', markersize=8, color="green")
-plt.plot(2900000, 0.865, marker='s', markersize=8, color="green")
-plt.text(1300000, 0.85, "Ref #2: IoT Dashboard Monitoring", color="green")
+plt.plot(imported_df["Cost"][1], imported_df["Safety"][1], marker='s', markersize=8, color="green")
+plt.plot(2900000, 0.565, marker='s', markersize=8, color="green")
+plt.text(1300000, 0.55, "Ref #2: IoT Dashboard Monitoring", color="green")
 
 #Third Architecture, VR Equipment Inspection
-plt.plot(imported_df["Cost"][2], imported_df["setup_time"][2], marker='s', markersize=8, color="darkblue")
-plt.plot(2900000, 0.815, marker='s', markersize=8, color="darkblue")
-plt.text(1300000, 0.80, "Ref #3: VR Equipment Inspection", color="darkblue")
+plt.plot(imported_df["Cost"][2], imported_df["Safety"][2], marker='s', markersize=8, color="darkblue")
+plt.plot(2900000, 0.515, marker='s', markersize=8, color="darkblue")
+plt.text(1300000, 0.50, "Ref #3: VR Equipment Inspection", color="darkblue")
 
-plt.plot(imported_df["Cost"][38], imported_df["setup_time"][38], marker='s', markersize=8, color="magenta")
-plt.plot(2900000, 0.765, marker='s', markersize=8, color="magenta")
-plt.text(1300000, 0.75, "Live Video-Sensor Dashboard", color="magenta")
+plt.plot(imported_df["Cost"][38], imported_df["Safety"][38], marker='s', markersize=8, color="magenta")
+plt.plot(2900000, 0.465, marker='s', markersize=8, color="magenta")
+plt.text(1300000, 0.45, "Live Video-Sensor Dashboard", color="magenta")
 
 plt.savefig('figure.png') # Save the figure to a file
