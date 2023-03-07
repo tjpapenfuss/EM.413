@@ -56,6 +56,8 @@ for item in range(len(df)):
     df.at[item,"Cost"] = (option_setup.loc[a_val]["Cost"] + \
                             option_setup.loc[b_val]["Cost"] + \
                             option_setup.loc[c_val]["Cost"] + \
+                            option_setup.loc[d_val]["Cost"] + \
+                            option_setup.loc[e_val]["Cost"] + \
                             option_setup.loc[f_val]["Cost"] + \
                             option_setup.loc[g_val]["Cost"] + \
                             option_setup.loc[h_val]["Cost"] + \
