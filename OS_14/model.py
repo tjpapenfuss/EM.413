@@ -45,25 +45,17 @@ for item in range(len(df)):
                             option_reliability.loc[g_val][metric_reliability] * \
                             option_reliability.loc[h_val][metric_reliability] * \
                             option_reliability.loc[j_val][metric_reliability], 2)
-    
     # Set the Utility value for the Safety.
-    df.at[item,metric_safety] = round((option_setup.loc[a_val][metric_safety] + \
+    df.at[item,metric_safety] = round(1 + ((option_setup.loc[a_val][metric_safety] + \
                             option_setup.loc[b_val][metric_safety] + \
                             option_setup.loc[c_val][metric_safety] + \
-                            option_setup.loc[d_val][metric_safety] + \
-                            option_setup.loc[e_val][metric_safety] + \
                             option_setup.loc[f_val][metric_safety] + \
-                            option_setup.loc[g_val][metric_safety] + \
-                            option_setup.loc[h_val][metric_safety] + \
-                            option_setup.loc[j_val][metric_safety] + \
-                            option_setup.loc[k_val][metric_safety]) / 10, 2)
-    
+                            option_setup.loc[k_val][metric_safety]) * -0.0016), 2)
+
     # Set value for the Cost. 
     df.at[item,"Cost"] = (option_setup.loc[a_val]["Cost"] + \
                             option_setup.loc[b_val]["Cost"] + \
                             option_setup.loc[c_val]["Cost"] + \
-                            option_setup.loc[d_val]["Cost"] + \
-                            option_setup.loc[e_val]["Cost"] + \
                             option_setup.loc[f_val]["Cost"] + \
                             option_setup.loc[g_val]["Cost"] + \
                             option_setup.loc[h_val]["Cost"] + \

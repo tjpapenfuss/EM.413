@@ -41,7 +41,7 @@ X_values, Y_values = pareto_frontier(imported_df["Cost"], imported_df["Safety"],
 #print(X_values, Y_values) # Print out to pareto frontier values.
 
 ax = plt.gca()
-ax.set_ylim([0.4, 1]) # Set the y-axis (Safety) limit to 0-1
+ax.set_ylim([0, 1]) # Set the y-axis (Safety) limit to 0-1
 plt.scatter(X_values, Y_values, c="red")
 plt.plot(X_values, Y_values, 'red', linestyle="--") # Then plot the Pareto frontier on top of your scatter plot.
 plt.title("Cost vs Safety - MAU Model")
