@@ -67,6 +67,11 @@ plt.text(1300000, 0.10, "Ref #3: VR Equipment Inspection", color="darkblue")
 
 plt.plot(imported_df["Cost"][38], imported_df["Reliability"][38], marker='s', markersize=8, color="magenta")
 plt.plot(2900000, 0.065, marker='s', markersize=8, color="magenta")
-plt.text(1300000, 0.05, "Live Video-Sensor Dashboard", color="magenta")
+plt.text(1300000, 0.05, "Ref #4: Live Video-Sensor Dashboard", color="magenta")
+
+#Interesting Reliability architectures. 
+plt.plot(imported_df["Cost"][146], imported_df["Reliability"][146], marker='H', markersize=12, color="slategrey")
+plt.plot(imported_df["Cost"][3], imported_df["Reliability"][3], marker='H', markersize=12, color="slategrey")
+
 
 plt.savefig('figure.png') # Save the figure to a file

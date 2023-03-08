@@ -52,21 +52,25 @@ plt.plot(100000, 0.90, marker='*', markersize=30, color="gold")
 #Plot some reference architectures
 #First Architecture, Semi-Automated Records
 plt.plot(imported_df["Cost"][0], imported_df["Safety"][0], marker='s', markersize=8, color="purple")
-plt.plot(2900000, 0.615, marker='s', markersize=8, color="purple")
-plt.text(1300000, 0.60, "Ref #1: Semi-Automated Records", color="purple")
+plt.plot(2900000, 0.215, marker='s', markersize=8, color="purple")
+plt.text(1150000, 0.20, "Ref #1: Semi-Automated Records", color="purple")
 
 #Second Architecture, IoT Dashboard Monitoring
 plt.plot(imported_df["Cost"][1], imported_df["Safety"][1], marker='s', markersize=8, color="green")
-plt.plot(2900000, 0.565, marker='s', markersize=8, color="green")
-plt.text(1300000, 0.55, "Ref #2: IoT Dashboard Monitoring", color="green")
+plt.plot(2900000, 0.165, marker='s', markersize=8, color="green")
+plt.text(1150000, 0.15, "Ref #2: IoT Dashboard Monitoring", color="green")
 
 #Third Architecture, VR Equipment Inspection
 plt.plot(imported_df["Cost"][2], imported_df["Safety"][2], marker='s', markersize=8, color="darkblue")
-plt.plot(2900000, 0.515, marker='s', markersize=8, color="darkblue")
-plt.text(1300000, 0.50, "Ref #3: VR Equipment Inspection", color="darkblue")
+plt.plot(2900000, 0.115, marker='s', markersize=8, color="darkblue")
+plt.text(1150000, 0.10, "Ref #3: VR Equipment Inspection", color="darkblue")
 
 plt.plot(imported_df["Cost"][38], imported_df["Safety"][38], marker='s', markersize=8, color="magenta")
-plt.plot(2900000, 0.465, marker='s', markersize=8, color="magenta")
-plt.text(1300000, 0.45, "Live Video-Sensor Dashboard", color="magenta")
+plt.plot(2900000, 0.065, marker='s', markersize=8, color="magenta")
+plt.text(1150000, 0.05, "Ref #4: Live Video-Sensor Dashboard", color="magenta")
+
+#Interesting Safety architectures. 
+plt.plot(imported_df["Cost"][102], imported_df["Safety"][102], marker='H', markersize=12, color="slategrey")
+plt.plot(imported_df["Cost"][70], imported_df["Safety"][70], marker='H', markersize=12, color="slategrey")
 
 plt.savefig('figure.png') # Save the figure to a file
