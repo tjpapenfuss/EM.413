@@ -37,14 +37,14 @@ for item in range(len(df)):
     #                         option_accuracy.loc[c_val][metric_accuracy] * \
     #                         option_accuracy.loc[d_val][metric_accuracy] * \
     #                         option_accuracy.loc[h_val][metric_accuracy], 2)
-    df.at[item,metric_reliability] = round(((option_reliability.loc[a_val][metric_reliability] + \
-                            option_reliability.loc[b_val][metric_reliability])/2) * \
-                            option_reliability.loc[c_val][metric_reliability] * \
-                            option_reliability.loc[d_val][metric_reliability] * \
-                            option_reliability.loc[e_val][metric_reliability] * \
-                            option_reliability.loc[g_val][metric_reliability] * \
-                            option_reliability.loc[h_val][metric_reliability] * \
-                            option_reliability.loc[j_val][metric_reliability], 2)
+    df.at[item,metric_reliability] = round((5 * ((option_reliability.loc[a_val][metric_reliability] + \
+                            option_reliability.loc[b_val][metric_reliability] + \
+                            option_reliability.loc[c_val][metric_reliability] + \
+                            option_reliability.loc[d_val][metric_reliability] + \
+                            option_reliability.loc[e_val][metric_reliability] + \
+                            option_reliability.loc[g_val][metric_reliability] + \
+                            option_reliability.loc[h_val][metric_reliability] + \
+                            option_reliability.loc[j_val][metric_reliability])/8)) - 4, 2)
     # Set the Utility value for the Safety.
     df.at[item,metric_safety] = round(1 + ((option_setup.loc[a_val][metric_safety] + \
                             option_setup.loc[b_val][metric_safety] + \
